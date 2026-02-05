@@ -95,19 +95,19 @@ const toggleLike = async (user: JwtPayload, postId: string) => {
         )
 
         // Notify author
-        // if (String(post.author) !== String(user.authId)) {
-        const postAuthor = await User.findById(post.author).select('+fcmToken')
-        console.log(postAuthor)
-        if (postAuthor) {
-            await sendNotification(
-                { authId: user.authId, name: user.name },
-                postAuthor._id.toString(),
-                'New Like',
-                `${user.name} liked your post`,
-                ...(postAuthor.fcmToken ? [postAuthor.fcmToken] : []),
-            )
+        if (String(post.author) !== String(user.authId)) {
+            const postAuthor = await User.findById(post.author).select('+fcmToken')
+            console.log(postAuthor)
+            if (postAuthor) {
+                await sendNotification(
+                    { authId: user.authId, name: user.name },
+                    postAuthor._id.toString(),
+                    'New Like',
+                    `${user.name} liked your post`,
+                    ...(postAuthor.fcmToken ? [postAuthor.fcmToken] : []),
+                )
+            }
         }
-        // }
     }
 
     return result
@@ -133,17 +133,18 @@ const addComment = async (user: JwtPayload, postId: string, content: string) => 
         .populate('comments.user', 'name profile')
 
     // Notify author
-    // if (String(post.author) !== String(user.authId)) {
-    const postAuthor = await User.findById(post.author).select('+fcmToken')
-    console.log(postAuthor)
-    if (postAuthor) {
-        await sendNotification(
-            { authId: user.authId, name: user.name },
-            postAuthor._id.toString(),
-            'New Comment',
-            `${user.name} commented on your post`,
-            ...(postAuthor.fcmToken ? [postAuthor.fcmToken] : []),
-        )
+    if (String(post.author) !== String(user.authId)) {
+        const postAuthor = await User.findById(post.author).select('+fcmToken')
+        console.log(postAuthor)
+        if (postAuthor) {
+            await sendNotification(
+                { authId: user.authId, name: user.name },
+                postAuthor._id.toString(),
+                'New Comment',
+                `${user.name} commented on your post`,
+                ...(postAuthor.fcmToken ? [postAuthor.fcmToken] : []),
+            )
+        }
     }
     return result
 }
