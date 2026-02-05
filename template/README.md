@@ -1,6 +1,6 @@
 # Techzu - Backend Server 🚀
 
-A robust Express.js (TypeScript) backend server for the Techzu On-Campus Car Rental platform.
+A robust Express.js (TypeScript) backend server providing the core API services for the Techzu Technical Assignment.
 
 ## 🌟 Features
 
@@ -8,7 +8,7 @@ A robust Express.js (TypeScript) backend server for the Techzu On-Campus Car Ren
 - **📱 Push Notifications**: Full integration with Firebase Cloud Messaging (FCM) to send notifications to mobile clients.
 - **🔔 Notification Management**: Dedicated module for creating and history-tracking of in-app and push notifications.
 - **🛡️ Security**: Rate limiting, security headers, and sanitized inputs.
-- **📂 File Storage**: AWS S3 and Cloudinary support for vehicle images and user profiles.
+- **📂 File Storage**: AWS S3 and Cloudinary support for media uploads and user profiles.
 
 ## 📋 Prerequisites
 
