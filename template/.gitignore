@@ -1,0 +1,10 @@
+node_modules
+.env
+/logs
+/uploads
+*~
+*.ts~
+/design
+
+firebase.json
+firebase.js
